@@ -1,12 +1,12 @@
+import Section from '@/components/common/section'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
 } from '@/components/ui/carousel'
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 import {
   AccessibilityIcon,
   BathIcon,
@@ -22,7 +22,7 @@ import {
   WifiIcon,
   WindIcon,
 } from 'lucide-react'
-import Section from '@/components/common/section'
+import Image from 'next/image'
 
 export default function Component() {
   return (
@@ -31,7 +31,7 @@ export default function Component() {
         <Carousel className="rounded-xl overflow-hidden">
           <CarouselContent>
             <CarouselItem>
-              <img
+              <Image
                 src="/placeholder.svg"
                 width={1200}
                 height={600}
@@ -40,7 +40,7 @@ export default function Component() {
               />
             </CarouselItem>
             <CarouselItem>
-              <img
+              <Image
                 src="/placeholder.svg"
                 width={1200}
                 height={600}
@@ -49,7 +49,7 @@ export default function Component() {
               />
             </CarouselItem>
             <CarouselItem>
-              <img
+              <Image
                 src="/placeholder.svg"
                 width={1200}
                 height={600}
@@ -80,7 +80,7 @@ export default function Component() {
           <div className="grid gap-1">
             <div className="font-semibold">Hosted by Catherine</div>
             <div className="text-sm text-muted-foreground">
-              Joined in 2010 · Superhost
+              Joined in 2010 &middot; Superhost
             </div>
           </div>
         </div>
@@ -166,8 +166,8 @@ export default function Component() {
                 <span>1 week ago</span>
               </div>
               <div>
-                Catherine's place was amazing! The views were incredible and the
-                house was very clean. We had a great time.
+                Catherine&apos;s place was amazing! The views were incredible
+                and the house was very clean. We had a great time.
               </div>
             </div>
           </div>
@@ -210,14 +210,12 @@ export default function Component() {
                 <span>1 week ago</span>
               </div>
               <div>
-                This is my second time staying at Catherine's place and it was
-                just as amazing as the first time. I would definitely stay
-                again!
+                We had a wonderful stay. The location is perfect and the
+                amenities are top-notch.
               </div>
             </div>
           </div>
         </div>
-        <Button variant="outline">Show all reviews</Button>
       </section>
     </Section>
   )
