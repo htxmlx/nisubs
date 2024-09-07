@@ -1,13 +1,10 @@
+import { ThemeProvider } from '@/components/theme-provider'
+import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
+import { SyncActiveOrganization } from '@/components/sync-active-organization'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,17 +18,32 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const { sessionClaims } = auth()
+  console.log(sessionClaims)
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: 'hsl(263.4, 70%, 50.4%)',
+        },
+        elements: {
+          navbarMobileMenuRow: {
+            background: 'transparent',
+          },
+        },
+      }}
+    >
+      <SyncActiveOrganization membership={sessionClaims?.membership} />
       <html lang="en">
         <body className={inter.className}>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
